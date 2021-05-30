@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import firebase from 'firebase';
 
-const ProtectedRoute = ({ children, path }: Props) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, path }) => {
   const [localUser, setLocalUser] = useState(0);
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -23,7 +23,7 @@ const ProtectedRoute = ({ children, path }: Props) => {
 
 export default ProtectedRoute;
 
-type Props = {
-  children: any;
+interface ProtectedRouteProps {
+  children: ReactNode;
   path: string;
-};
+}
